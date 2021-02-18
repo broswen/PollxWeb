@@ -1,16 +1,18 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Button from '../Button/Button';
+import Selector from '../PollPage/Selector';
 import './PollPage.css';
-import Selector from './Selector';
 
 
 const PollPage = (props) => {
 
     const { id } = useParams();
 
-    const [poll, setPoll] = useState({});
+    const [poll, setPoll] = useState();
+
+    const history = useHistory();
 
     const [choices, setChoices] = useState([]);
 
@@ -19,13 +21,16 @@ const PollPage = (props) => {
     }
 
     const handleSubmit = () => {
+        if (choices.length === 0) return;
         console.log('submit', choices);
         axios.post('https://d3vz0d3tn2.execute-api.us-east-1.amazonaws.com' + '/poll/' + id, { choices })
             .then(data => {
-                console.log(data)
+                history.push('/results/' + id);
             })
             .catch(error => {
                 console.log(error);
+                alert('You have already voted');
+                history.push('/results/' + id);
             })
     }
 
@@ -41,10 +46,16 @@ const PollPage = (props) => {
 
     return (
         <div className="PollPage">
-            <h2>{poll.question + (poll.enabled ? '' : ' [DISABLED]')}</h2>
-            <h4>mode: {poll.type}</h4>
-            <Selector choices={poll.choices} type={poll.type} onChange={handlerChoicesChange} />
-            <Button click={handleSubmit}> Submit </Button>
+
+            { poll ?
+                <div>
+                    <h2>{poll.question}</h2>
+                    <h4>mode: {poll.type}</h4>
+                    <Selector enabled choices={poll.choices.map(choice => ({ choice: choice }))} type={poll.type} onChange={handlerChoicesChange} />
+                    <Button click={handleSubmit}> Submit </Button>
+                </div>
+                : null
+            }
         </div>
     );
 }

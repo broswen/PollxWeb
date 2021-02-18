@@ -7,10 +7,13 @@ const Selector = (props) => {
     const [choices, setChoices] = useState([]);
 
     useEffect(() => {
-        props.onChange(choices);
+        if (props.enabled) {
+            props.onChange(choices);
+        }
     }, [choices]);
 
     const onSelectChoice = (choice) => {
+        if (!props.enabled) return;
         if (props.type === 'MULTIPLE') {
             if (!choices.includes(choice)) {
                 setChoices(choices.concat(choice));
@@ -26,11 +29,15 @@ const Selector = (props) => {
         <div className="Selector">
             {
                 props.choices && props.choices.map(choice => (
-                    <div className={"choice" + (choices.includes(choice) ? " active" : "")}
-                        key={choice}
-                        onClick={() => onSelectChoice(choice)}
+                    <div className={"choice" + (choices.includes(choice.choice) ? " active" : "")}
+                        key={choice.choice}
+                        onClick={() => onSelectChoice(choice.choice)}
                     >
-                        {choice}
+                        <div className="wrapper">
+                            <p>{choice.choice}</p>
+                            <p style={{ fontWeight: 'bold' }}>{choice.value}</p>
+                        </div>
+
                     </div>
                 ))
             }

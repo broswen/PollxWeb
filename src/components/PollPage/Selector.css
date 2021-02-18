@@ -9,16 +9,31 @@
     background-color: var(--primary);
     padding: 1rem;
     margin-bottom: 0.5rem;
-    border: 1px solid var(--accent);
+
+    border-style: solid;
     border-color: var(--accent);
-    transition: background-color 0.2s, border-color 0.2s;
+    border-width: 0 0.5rem 0 0.5rem;
+
+    transition: background-color 0.2s, border-width 0.2s, font-weight 0.2s;
 }
 
-.active {
-    border-left-width: 15px;
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .choice:hover {
     background-color: var(--accent);
     border-color: var(--primary);
+    border-width: 0 0.7rem 0 0.7rem;
+}
+
+.active {
+    border-width: 0 2rem 0 2rem;
+    font-weight: bold;
+}
+
+.active:hover {
+    border-width: 0 2rem 0 2rem;
 }

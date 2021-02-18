@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Selector from '../PollPage/Selector';
 
 const PollResultsPage = (props) => {
 
     const { id } = useParams();
 
-    const [poll, setPoll] = useState({});
+    const [poll, setPoll] = useState();
 
     useEffect(() => {
         axios.get('https://d3vz0d3tn2.execute-api.us-east-1.amazonaws.com' + '/results/' + id)
@@ -20,16 +21,17 @@ const PollResultsPage = (props) => {
 
     return (
         <div className="PollResultsPage">
-            <h1>Results</h1>
-            <h2>{poll.question}</h2>
-            <div>
-                {
-                    poll.choices && poll.choices.map(choice => (
-                        <div key={choice.choice}>{choice.choice}: {choice.value}</div>
-                    ))
-                }
-            </div>
-        </div>
+            <h1>{poll ? 'Results' : 'Loading...'}</h1>
+            { poll ?
+                <div>
+                    <h2>{poll.question}</h2>
+                    <h4>mode: {poll.type}</h4>
+                    <Selector choices={poll.choices} type={poll.type} onChange={(c) => console.log(c)} />
+                </div>
+                : null
+
+            }
+        </div >
     );
 }
 
