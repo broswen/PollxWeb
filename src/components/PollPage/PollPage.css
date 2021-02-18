@@ -1,0 +1,5 @@
+.PollPage {
+    display: flex;
+    flex-direction: column;
+    color: var(--black);
+}

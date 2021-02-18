@@ -1,0 +1,27 @@
+.Navbar {
+    margin: 2rem;
+    background-color: var(--primary);
+    color: var(--text);
+    border-radius: 0.3rem;
+    max-width: 800px;
+    min-width: 300px;
+    margin: 0 auto 0 auto;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 3px var(--black);
+}
+
+.NavbarItem {
+    padding: 1rem;
+    margin: 0rem 0.2rem 0rem 0.2rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: background-color 0.2s ease;
+}
+.NavbarItem:hover {
+    background-color: var(--accent);
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+}

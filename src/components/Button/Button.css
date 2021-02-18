@@ -1,0 +1,16 @@
+.Button {
+    background-color: var(--primary);
+    color: var(--text);
+    border-radius: 0.3rem;
+    margin: 1rem 0rem;
+    padding: 1rem;
+    text-align: center;
+    transition: background-color 0.2s ease;
+
+    position: relative;
+}
+
+.Button:hover {
+    background-color: var(--accent);
+}
+
