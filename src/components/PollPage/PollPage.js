@@ -23,7 +23,7 @@ const PollPage = (props) => {
     const handleSubmit = () => {
         if (choices.length === 0) return;
         console.log('submit', choices);
-        axios.post('https://d3vz0d3tn2.execute-api.us-east-1.amazonaws.com' + '/poll/' + id, { choices })
+        axios.post('https://4vxo8knoa0.execute-api.us-east-1.amazonaws.com' + '/poll/' + id, { choices })
             .then(data => {
                 history.push('/results/' + id);
             })
@@ -35,7 +35,7 @@ const PollPage = (props) => {
     }
 
     useEffect(() => {
-        axios.get('https://d3vz0d3tn2.execute-api.us-east-1.amazonaws.com' + '/poll/' + id)
+        axios.get('https://4vxo8knoa0.execute-api.us-east-1.amazonaws.com' + '/poll/' + id)
             .then(data => {
                 setPoll(data.data);
             })

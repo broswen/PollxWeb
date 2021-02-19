@@ -10,7 +10,7 @@ const PollResultsPage = (props) => {
     const [poll, setPoll] = useState();
 
     useEffect(() => {
-        axios.get('https://d3vz0d3tn2.execute-api.us-east-1.amazonaws.com' + '/results/' + id)
+        axios.get('https://4vxo8knoa0.execute-api.us-east-1.amazonaws.com' + '/results/' + id)
             .then(data => {
                 setPoll(data.data);
             })

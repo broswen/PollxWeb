@@ -1,0 +1,38 @@
+.CreatePollPage {
+
+}
+
+
+input[type=button] {
+    font-size: 1rem;
+    background-color: var(--primary);
+    color: var(--text);
+    padding: 1rem 1.4rem;
+    border-width: 0;
+    border-radius: 0.3rem;
+}
+
+input[type=checkbox] {
+    width: 2rem;
+    height: 2rem;
+}
+
+input[type=text]{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--primary);
+    color: var(--text);
+    border-width: 0;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+}
+
+::placeholder {
+    color: #c4c4c4;
+}
+
+input[type=text]:focus {
+    background-color: var(--accent);
+}
